@@ -1,0 +1,19 @@
+spring.application.name: grpc-server
+spring.profiles.active: local
+
+spring:
+  main.web-application-type: none
+
+grpc:
+  port: 8081
+  in-process-server-name: grpc-server
+  shutdown-grace: 30 # seconds
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile: dev
+
+---
+spring.config.activate.on-profile: production
