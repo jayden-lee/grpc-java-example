@@ -7,7 +7,7 @@ import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 
 @GRpcService
-public class HelloWorldServiceImpl extends HelloWorldGrpc.HelloWorldImplBase {
+public class HelloWorldServiceHandler extends HelloWorldGrpc.HelloWorldImplBase {
 
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {

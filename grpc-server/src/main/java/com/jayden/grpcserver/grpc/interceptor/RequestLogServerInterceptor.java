@@ -27,7 +27,7 @@ public class RequestLogServerInterceptor implements ServerInterceptor {
                 @Override
                 public void close(Status status, Metadata metadata) {
                     stopWatch.stop();
-                    log.info("Access rpc methodName: {}, elapsed: {}ms", methodName, stopWatch.getTotalTimeMillis());
+                    log.info("Access rpc methodName: {}, status code: {}, elapsed: {}ms", methodName, status.getCode().name(), stopWatch.getTotalTimeMillis());
                     super.close(status, metadata);
                 }
             }, headers, next);
