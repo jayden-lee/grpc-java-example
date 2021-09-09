@@ -1,0 +1,15 @@
+spring.application.name: grpc-client
+spring.profiles.active: local
+
+grpc.server:
+  address: localhost
+  port: 8081
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile: dev
+
+---
+spring.config.activate.on-profile: production

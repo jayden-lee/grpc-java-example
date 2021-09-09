@@ -1,0 +1,22 @@
+tasks.getByName("bootJar") {
+    enabled(true)
+}
+
+tasks.getByName("jar") {
+    enabled(false)
+}
+
+def grpcVersion = "1.40.0"
+
+dependencies {
+    implementation project(":idl")
+
+    implementation "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-services:${grpcVersion}"
+}
