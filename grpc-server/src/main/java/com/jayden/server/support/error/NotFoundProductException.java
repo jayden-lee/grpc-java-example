@@ -1,4 +1,4 @@
-package com.jayden.grpcserver.support.error;
+package com.jayden.server.support.error;
 
 public class NotFoundProductException extends RuntimeException {
 

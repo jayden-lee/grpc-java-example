@@ -1,4 +1,4 @@
-package com.jayden.grpcserver.grpc.handler;
+package com.jayden.server.grpc.handler;
 
 import com.jayden.helloworld.HelloReply;
 import com.jayden.helloworld.HelloRequest;

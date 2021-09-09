@@ -1,4 +1,4 @@
-package com.jayden.grpcserver.domain.product;
+package com.jayden.server.domain.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

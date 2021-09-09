@@ -1,6 +1,6 @@
-package com.jayden.grpcserver.domain.product;
+package com.jayden.server.domain.product;
 
-import com.jayden.grpcserver.support.error.NotFoundProductException;
+import com.jayden.server.support.error.NotFoundProductException;
 import com.jayden.product.Product;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,14 @@ public class ProductService {
     }
 
     public Long addProduct(Product product) {
-        ProductEntity entity = new ProductEntity(product.getName(),
-            product.getDescription(), product.getPrice());
+        ProductEntity entity = ProductEntity.builder()
+            .name(product.getName())
+            .description(product.getDescription())
+            .price(product.getPrice())
+            .build();
+
         productRepository.save(entity);
+
         return entity.getId();
     }
 

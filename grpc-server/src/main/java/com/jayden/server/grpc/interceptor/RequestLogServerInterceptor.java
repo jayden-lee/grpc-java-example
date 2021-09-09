@@ -1,15 +1,13 @@
-package com.jayden.grpcserver.grpc.interceptor;
+package com.jayden.server.grpc.interceptor;
 
 import io.grpc.*;
+import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcGlobalInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch;
 
+@Slf4j
 @GRpcGlobalInterceptor
 public class RequestLogServerInterceptor implements ServerInterceptor {
-
-    private final Logger log = LoggerFactory.getLogger(RequestLogServerInterceptor.class);
 
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call, Metadata headers,
@@ -19,7 +17,7 @@ public class RequestLogServerInterceptor implements ServerInterceptor {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
-        String methodName = call.getMethodDescriptor().getFullMethodName();
+        String methodName = call.getMethodDescriptor().getBareMethodName();
 
         return Contexts.interceptCall(
             context,
@@ -27,7 +25,7 @@ public class RequestLogServerInterceptor implements ServerInterceptor {
                 @Override
                 public void close(Status status, Metadata metadata) {
                     stopWatch.stop();
-                    log.info("Access rpc methodName: {}, status code: {}, elapsed: {}ms", methodName, status.getCode().name(), stopWatch.getTotalTimeMillis());
+                    log.info("Access rpc method: {}, status: {}, elapsed: {}ms", methodName, status.getCode().name(), stopWatch.getTotalTimeMillis());
                     super.close(status, metadata);
                 }
             }, headers, next);
