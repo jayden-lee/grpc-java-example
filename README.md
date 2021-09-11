@@ -1,8 +1,8 @@
-# gRPC Java Boilerplate
+# gRPC Java Example
 
 ## Project Structure
 ```
-grpc-java-boilerplate
+grpc-java-example
   └─ idl
   └─ grpc-server
   └─ grpc-client
