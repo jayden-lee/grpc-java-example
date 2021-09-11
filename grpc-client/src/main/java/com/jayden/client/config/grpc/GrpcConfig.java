@@ -2,8 +2,6 @@ package com.jayden.client.config.grpc;
 
 import brave.Tracing;
 import brave.grpc.GrpcTracing;
-import brave.rpc.RpcTracing;
-import brave.rpc.RpcTracingCustomizer;
 import com.jayden.product.ProductServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -25,10 +23,18 @@ public class GrpcConfig {
     }
 
     @Bean
-    public ManagedChannel managedChannel(GrpcTracing grpcTracing) {
+    public GrpcLogClientInterceptor grpcLogClientInterceptor() {
+        return new GrpcLogClientInterceptor();
+    }
+
+    @Bean
+    public ManagedChannel managedChannel(GrpcTracing grpcTracing, GrpcLogClientInterceptor grpcLogClientInterceptor) {
         return ManagedChannelBuilder
             .forAddress(grpcServerProperty.getAddress(), grpcServerProperty.getPort())
-            .intercept(grpcTracing.newClientInterceptor())
+            .intercept(
+                grpcTracing.newClientInterceptor(),
+                grpcLogClientInterceptor
+            )
             .usePlaintext()
             .build();
     }

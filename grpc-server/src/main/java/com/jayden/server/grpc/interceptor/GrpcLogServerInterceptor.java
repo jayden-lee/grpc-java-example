@@ -7,7 +7,7 @@ import org.springframework.util.StopWatch;
 
 @Slf4j
 @GRpcGlobalInterceptor
-public class RequestLogServerInterceptor implements ServerInterceptor {
+public class GrpcLogServerInterceptor implements ServerInterceptor {
 
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call, Metadata headers,
