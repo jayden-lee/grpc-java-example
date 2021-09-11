@@ -2,6 +2,9 @@ spring.application.name: grpc-client
 spring.profiles.active: local
 
 spring:
+  config:
+    import:
+      - logging.yml
   mvc.throw-exception-if-no-handler-found: true
   web.resources.add-mappings: false
 

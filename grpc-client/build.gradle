@@ -10,6 +10,7 @@ def grpcVersion = "1.40.0"
 
 dependencies {
     implementation project(":idl")
+    implementation project(":modules:logging")
 
     implementation "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"

@@ -2,7 +2,13 @@ spring.application.name: grpc-server
 spring.profiles.active: local
 
 spring:
+  config:
+    import:
+      - logging.yml
   main.web-application-type: none
+  sleuth:
+    grpc:
+      enabled: true
 
 grpc:
   port: 8081

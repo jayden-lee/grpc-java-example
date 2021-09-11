@@ -6,6 +6,8 @@ grpc-java-boilerplate
   └─ idl
   └─ grpc-server
   └─ grpc-client
+  └─ modules
+    └─ logging  
 ```
 
 ## GUI Client for gRPC services
