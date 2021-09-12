@@ -20,26 +20,19 @@ public class ProductServiceHandler extends ProductServiceGrpc.ProductServiceImpl
     }
 
     @Override
-    public void addProduct(CreateProductRequest request, StreamObserver<CreateProductResponse> responseObserver) {
-        Long productId = productService.addProduct(request.getProduct());
-
-        CreateProductResponse response = CreateProductResponse.newBuilder()
-            .setProductId(String.valueOf(productId))
-            .build();
-        responseObserver.onNext(response);
+    public void createProduct(CreateProductRequest request, StreamObserver<Product> responseObserver) {
+        Product product = productService.addProduct(request.getProduct());
+        responseObserver.onNext(product);
         responseObserver.onCompleted();
     }
 
     @Override
-    public void getProduct(GetProductRequest request, StreamObserver<GetProductResponse> responseObserver) {
+    public void getProduct(GetProductRequest request, StreamObserver<Product> responseObserver) {
         Long productId = Long.valueOf(request.getProductId());
 
         try {
             Product product = productService.getProduct(productId);
-            GetProductResponse response = GetProductResponse.newBuilder()
-                .setProduct(product)
-                .build();
-            responseObserver.onNext(response);
+            responseObserver.onNext(product);
             responseObserver.onCompleted();
         } catch (NotFoundProductException nfe) {
             log.info("Not found product error", nfe);

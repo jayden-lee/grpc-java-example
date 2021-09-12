@@ -1,6 +1,6 @@
 package com.jayden.client.controller;
 
-import com.jayden.client.domain.Product;
+import com.jayden.client.domain.ProductResult;
 import com.jayden.client.domain.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductResponse getProduct(@PathVariable Long id) {
         log.info("getProduct id: {}", id);
-        Product product = productService.getProduct(id);
+        ProductResult product = productService.getProduct(id);
         return new ProductResponse(product);
     }
 }

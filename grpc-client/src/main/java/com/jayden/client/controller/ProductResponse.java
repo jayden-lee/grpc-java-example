@@ -1,6 +1,6 @@
 package com.jayden.client.controller;
 
-import com.jayden.client.domain.Product;
+import com.jayden.client.domain.ProductResult;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,7 +11,7 @@ public class ProductResponse {
     private final Float price;
 
     @Builder
-    public ProductResponse(Product product) {
+    public ProductResponse(ProductResult product) {
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();

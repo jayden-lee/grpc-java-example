@@ -13,7 +13,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Long addProduct(Product product) {
+    public Product addProduct(Product product) {
         ProductEntity entity = ProductEntity.builder()
             .name(product.getName())
             .description(product.getDescription())
@@ -22,7 +22,11 @@ public class ProductService {
 
         productRepository.save(entity);
 
-        return entity.getId();
+        return Product.newBuilder()
+            .setName(entity.getName())
+            .setDescription(entity.getDescription())
+            .setPrice(entity.getPrice())
+            .build();
     }
 
     public Product getProduct(Long productId) {

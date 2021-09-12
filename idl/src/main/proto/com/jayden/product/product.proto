@@ -7,28 +7,23 @@ option java_outer_classname = "ProductProto";
 package product;
 
 service ProductService {
-    rpc addProduct(CreateProductRequest) returns (CreateProductResponse);
-    rpc getProduct(GetProductRequest) returns (GetProductResponse);
+
+  rpc CreateProduct(CreateProductRequest) returns (Product);
+
+  rpc GetProduct(GetProductRequest) returns (Product);
 }
 
 message CreateProductRequest {
-    Product product = 1;
-}
-
-message CreateProductResponse {
-    string product_id = 1;
+  Product product = 1;
 }
 
 message GetProductRequest {
-    string product_id = 1;
-}
-
-message GetProductResponse {
-    Product product = 1;
+  // The id of the product to retrieve.
+  string product_id = 1;
 }
 
 message Product {
-    string name = 1;
-    string description = 2;
-    float price = 3;
+  string name = 1;
+  string description = 2;
+  float price = 3;
 }
