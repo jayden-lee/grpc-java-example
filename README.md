@@ -7,7 +7,8 @@ grpc-java-example
   └─ grpc-server
   └─ grpc-client
   └─ modules
-    └─ logging  
+    └─ logging
+    └─ monitoring      
 ```
 
 ## GUI Client for gRPC services

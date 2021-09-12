@@ -5,6 +5,7 @@ spring:
   config:
     import:
       - logging.yml
+      - monitoring.yml
   main.web-application-type: none
   sleuth:
     grpc:

@@ -1,0 +1,9 @@
+# Monitoring
+
+## dependencies
+```
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-statsd'
+}
+```

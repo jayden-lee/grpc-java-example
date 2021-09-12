@@ -1,0 +1,20 @@
+management:
+  health:
+    livenessState.enabled: true
+    readinessState.enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  metrics:
+    tags:
+      phase: ${spring.profiles.active}
+    export:
+      statsd:
+        enabled: true
+        flavor: telegraf
+        polling-frequency: 5s
+        max-packet-length: 5000
+        host: localhost
+        port: 8126
+        publish-unchanged-meters: true

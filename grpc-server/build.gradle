@@ -11,11 +11,10 @@ def grpcSpringBootVersion = "4.5.6"
 dependencies {
     implementation project(":idl")
     implementation project(":modules:logging")
+    implementation project(":modules:monitoring")
 
     implementation "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
-
-//    implementation "javax.annotation:javax.annotation-api:1.2"
 
     implementation "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
