@@ -7,6 +7,9 @@ import org.springframework.util.StopWatch;
 @Slf4j
 public class GrpcLogClientInterceptor implements ClientInterceptor {
 
+    private static final Metadata.Key<String> CUSTOM_HEADER_KEY =
+        Metadata.Key.of("custom_client_header_key", Metadata.ASCII_STRING_MARSHALLER);
+
     @Override
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> method,
                                                                CallOptions callOptions,
@@ -27,17 +30,20 @@ public class GrpcLogClientInterceptor implements ClientInterceptor {
 
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
+                // put custom header
+                headers.put(CUSTOM_HEADER_KEY, "CUSTOM_HEADER_VALUE");
+
                 super.start(
                     new ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(responseListener) {
                         @Override
                         public void onMessage(RespT message) {
-                            log.debug("Response message: {}", message);
+                            log.info("Response message: {}", message);
                             super.onMessage(message);
                         }
 
                         @Override
                         public void onHeaders(Metadata headers) {
-                            log.debug("gRPC headers: {}", headers);
+                            log.info("Response headers: {}", headers);
                             super.onHeaders(headers);
                         }
 

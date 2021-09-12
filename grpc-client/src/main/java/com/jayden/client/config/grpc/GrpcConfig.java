@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GrpcConfig {
 
-    private GrpcServerProperty grpcServerProperty;
+    private final GrpcServerProperty grpcServerProperty;
 
     public GrpcConfig(GrpcServerProperty grpcServerProperty) {
         this.grpcServerProperty = grpcServerProperty;

@@ -9,9 +9,15 @@ import org.springframework.util.StopWatch;
 @GRpcGlobalInterceptor
 public class GrpcLogServerInterceptor implements ServerInterceptor {
 
+    private static final Metadata.Key<String> CUSTOM_HEADER_KEY =
+        Metadata.Key.of("custom_client_header_key", Metadata.ASCII_STRING_MARSHALLER);
+
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call, Metadata headers,
                                                                  ServerCallHandler<ReqT, RespT> next) {
+
+        log.info("Received headers from client: {}", headers);
+
         Context context = Context.current();
 
         StopWatch stopWatch = new StopWatch();
